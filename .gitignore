@@ -1,0 +1,13 @@
+tmp/
+vendor/
+composer.lock
+/composer.lock
+/composer.phar
+/.idea
+build/
+cache.properties
+/bin
+*.local.ini
+*.local.php
+php.ini
+
