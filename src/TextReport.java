@@ -10,13 +10,10 @@ import utils.FileSystem;
 public class TextReport implements IReport {
 
     @Override
-    public void export(ArrayList<String> result) {
+    public void export(String result) {
         FileSystem fs = new FileSystem();
-        //Date now = new Date();
-        //int hours = now.getHours();
-        //int min = now.getMinutes();
         String filename = "relatorio.txt";
-        boolean status = fs.WriteFile(result.toString(), filename);
+        boolean status = fs.WriteFile(result, filename);
         
         if(!status){
             System.out.println(fs.GetLastError());

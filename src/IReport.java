@@ -1,8 +1,6 @@
 
 import java.util.ArrayList;
 
-
-
 /**
  *
  * @author Diego
@@ -14,6 +12,6 @@ public interface IReport {
      * 
      * @param result The results yeld by Analizador
      */
-    public void export(ArrayList<String> result);
+    public void export(String result);
     
 }

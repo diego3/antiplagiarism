@@ -1,0 +1,2 @@
+Arquivo alvo	 - comparado	 - Igualdade
+src/Analizador.java	 - src/Analizador2.java	 - 90.74152565002441

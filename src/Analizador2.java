@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JFileChooser;
 import javax.swing.JProgressBar;
 import utils.FileSystem;
 import utils.Levensthein;
@@ -21,17 +22,18 @@ import utils.Levensthein;
  * 
  * @author Diego
  */
-public class Analizador {
+public class Analizador2 {
     
     private ArrayList<ArrayList<String>> methodList;
     private final FileSystem fs;
     private String html = "";
-    private int qtdFiles = 0;
-    private JProgressBar progressbar;
     
-    public Analizador(JProgressBar progress){
+    public JProgressBar progressbar;
+    
+    public Analizador2(JProgressBar progress){
         fs = new FileSystem();
         progressbar = progress;
+        
     }
     
     public FileSystem GetFileSystem(){
@@ -88,9 +90,11 @@ public class Analizador {
     }
     
     public void analitycRecursive(String targetFile, String rootPath){
+        countFiles(rootPath);
+        progressbar.setMaximum(qtdFiles);
+        
         
         walk(targetFile, rootPath);
-        
         HtmlReport report = new HtmlReport();
         report.export(html);
     }
@@ -109,22 +113,17 @@ public class Analizador {
                 System.out.println( "File:" + f.getAbsoluteFile() );
                 
                 String rel = analityc2(targetFile, f.getAbsolutePath());
+                
                 html += rel;
                 
                 progressbar.setValue(progressbar.getValue()+1);
-                
             }
         }
     }
     
-    public int GetQtdFiles(){
-        return qtdFiles;
-    }
-    public void SetQtdFiles(int value){
-        this.qtdFiles = value;
-    }
+    private int qtdFiles = 0;
     
-    public void countFiles(String path) {
+    private void countFiles(String path) {
         File root = new File( path );
         File[] list = root.listFiles();
         if (list == null) return;
@@ -137,5 +136,4 @@ public class Analizador {
             }
         }
     }
-
 }
